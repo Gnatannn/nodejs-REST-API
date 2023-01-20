@@ -4,7 +4,7 @@ const { contacts: controller } = require("../../controllers");
 
 const router = express.Router();
 
-const validation = require("../../middlewares/validation");
+const { validation } = require("../../middlewares/validation");
 const { joiSchema, favoriteJoiSchema } = require("../../models/contact");
 
 router.get("/", controller.getAllContacts);

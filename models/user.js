@@ -29,12 +29,12 @@ const userSchema = new Schema(
 
 const joiSignupSchema = Joi.object({
   password: Joi.string().min(6).required(),
-  email: Joi.string.required(),
+  email: Joi.string().required(),
 });
 
 const joiLoginSchema = Joi.object({
   password: Joi.string().min(6).required(),
-  email: Joi.string.required(),
+  email: Joi.string().required(),
 });
 
 const User = model("user", userSchema);

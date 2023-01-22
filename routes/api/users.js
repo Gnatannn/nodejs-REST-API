@@ -20,6 +20,6 @@ router.post(
 
 router.get("/current", auth, ctrlWrapper(controller.getCurrent));
 
-router.get("/logout", auth, ctrlWrapper(controller.logout));
+router.post("/logout", auth, ctrlWrapper(controller.logout));
 
 module.exports = router;

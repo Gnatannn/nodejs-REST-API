@@ -23,17 +23,14 @@ const updateAvatar = async (req, res) => {
   const { path: tempUpload, filename } = req.file;
   const { _id } = req.user;
   const newAvatarName = `${_id}_${filename}`;
-  try {
-    const resultUpload = path.join(avatarDir, newAvatarName);
-    await fs.rename(tempUpload, resultUpload);
-    const avatarURL = path.join("avatars", newAvatarName);
-    await User.findByIdAndUpdate(_id, { avatarURL });
-    amendAvatar(avatarURL);
-    res.json({ avatarURL });
-  } catch (error) {
-    await fs.unlink(tempUpload);
-    throw error;
-  }
+
+  const resultUpload = path.join(avatarDir, newAvatarName);
+  await fs.rename(tempUpload, resultUpload);
+
+  const avatarURL = path.join("public", "avatars", newAvatarName);
+  amendAvatar(avatarURL);
+  await User.findByIdAndUpdate(_id, { avatarURL });
+  res.json({ avatarURL });
 };
 
 module.exports = updateAvatar;
